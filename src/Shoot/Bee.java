@@ -20,7 +20,7 @@ public class Bee extends Flyingobject implements AwardType {
         y_speed = 1;
         award = (int)(Math.random() * 2);
         // 初始化灰烬图
-        ember = new BufferedImage[]{Main.bee_ember0,Main.bigplane_ember1,Main.bee_ember2,Main.bee_ember3};
+        ember = new BufferedImage[]{Main.bee_ember0,Main.bee_ember1,Main.bee_ember2,Main.bee_ember3};
     }
     // 重写 move 方法
     @Override

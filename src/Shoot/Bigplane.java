@@ -16,7 +16,7 @@ public class Bigplane extends Flyingobject implements AddScoreType,AwardType {
     // 无参构造函数进行初始化
     public Bigplane() {
         // x坐标是随机的，y坐标是高度的负值
-        super(Main.bigplane,(int)(Math.random()*(Main.WIDTH - Main.bigplane.getWidth())),-Main.bigplane.getHeight(),5);
+        super(Main.bigplane,(int)(Math.random()*(Main.WIDTH - Main.bigplane.getWidth())),-Main.bigplane.getHeight(),8);
         speed = 2;
         score = 15;
         award =(int)(Math.random() * 2);

@@ -35,22 +35,36 @@ public class Hero extends Flyingobject {
     public void doubleFire() {
         doubleFireCount += 20;
     }
+    // 定义三倍子弹的次数
+    private int thirdFireCount = 0;
+    // 三倍子弹
+    public void thirdFire() {
+        thirdFireCount += 10;
+    }
     // 发射子弹
     public Bullet[] shoot() {
         // 用两种情况的子弹 用数组来存储
         // 单发和双发
         Bullet[] bullet;
         // 判断子弹颗数
-        if (doubleFireCount == 0) {
-            bullet = new Bullet[1];
-            // 单发情况
-            bullet[0] = new Bullet(getX() + getWidth() / 2,getY());
-        } else {
-            // 双倍子弹情况
-            bullet = new Bullet[2];
+        if (thirdFireCount != 0) {
+            bullet = new Bullet[3];
             bullet[0] = new Bullet(getX() + (getWidth() / 4),getY());
-            bullet[1] = new Bullet(getX() + (getWidth() / 4 * 3),getY());
-            doubleFireCount --;
+            bullet[1] = new Bullet(getX() + (getWidth() / 2),getY());
+            bullet[2] = new Bullet(getX() + (getWidth() / 4 * 3),getY());
+            thirdFireCount --;
+        } else {
+            if (doubleFireCount == 0) {
+                bullet = new Bullet[1];
+                // 单发情况
+                bullet[0] = new Bullet(getX() + getWidth() / 2,getY());
+            } else {
+                // 双倍子弹情况
+                bullet = new Bullet[2];
+                bullet[0] = new Bullet(getX() + (getWidth() / 4),getY());
+                bullet[1] = new Bullet(getX() + (getWidth() / 4 * 3),getY());
+                doubleFireCount --;
+            }
         }
         // 返回子弹 调用shoot时接收子弹存储在子弹列表中
         return bullet;

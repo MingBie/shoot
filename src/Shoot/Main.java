@@ -108,6 +108,7 @@ public class Main extends JPanel{
     private ArrayList<Ember> embers;
     // 无参构造函数进行初始化
     Main() {
+        // ArrayList<> 不会为null
         flys = new ArrayList<Flyingobject>();
         bullets = new ArrayList<Bullet>();
         embers = new ArrayList<Ember>();
@@ -136,7 +137,7 @@ public class Main extends JPanel{
                 // 判断飞行物是否与英雄机相撞
                 bangHero();
                 // 创建灰烬图
-                createEmber();
+                switchEmber();
                 // 重新画图
                 repaint();
             }
@@ -156,6 +157,18 @@ public class Main extends JPanel{
                     hero.setY(400);
                     hero.setLife(3);
                     hero.setScore(0);
+                    // 清空子弹列表
+                    Bullet bullet;
+                    for(int i = 0; i < bullets.size(); i++) {
+                        bullet = bullets.get(i);
+                        bullet = null;
+                    }
+                    // 清空飞行物列表
+                    Flyingobject fly;
+                    for(int i = 0; i < flys.size(); i++) {
+                        fly = flys.get(i);
+                        fly = null;
+                    }
                 }
             }
             // 鼠标进入
@@ -210,11 +223,13 @@ public class Main extends JPanel{
                 // 根据概率来创建各个飞行物
                 int ran = (int)(Math.random() * 20);
                 if (ran == 0) {
-                    fly = new Bee();
+                    fly = new Bee(); // 创建小蜜蜂
                 } else if (ran == 1 || ran == 2) {
-                    fly = new Bigplane();
+                    fly = new Bigplane(); // 创建大飞机
+                } else if (ran == 3 || ran == 4){
+                    fly = new XXLplane(); // 创建超大飞机
                 } else {
-                    fly = new Airplane();
+                    fly = new Airplane(); // 创建小敌机
                 }
                 // 把创建的飞行物存储到飞行物列表中
                 flys.add(fly);
@@ -322,9 +337,12 @@ public class Main extends JPanel{
                             if (awardType.getAward() == AwardType.ADD_LIFE) {
                                 // 加生命值
                                 hero.addLife();
-                            } else {
+                            } else if (awardType.getAward() == AwardType.DOUBLE_FIRE) {
                                 // 双倍子弹
                                 hero.doubleFire();
+                            } else {
+                                // 三倍子弹
+                                hero.thirdFire();
                             }
                         }
                         // 创建清除的飞行物灰烬
@@ -359,12 +377,14 @@ public class Main extends JPanel{
             }
         }
     }
-    // 创建灰烬
-    private void createEmber() {
+    // 切换每一张灰烬图
+    private void switchEmber() {
         Ember ember;
         for(int i = 0; i < embers.size(); i++) {
             ember = embers.get(i);
+            // 获得每一张灰烬图
             if (ember.burnDown()) {
+                // 切换完后从灰烬列表中移除灰烬
                 embers.remove(i);
             }
         }
@@ -456,6 +476,7 @@ public class Main extends JPanel{
         Ember ember;
         for(int i = 0; i < embers.size(); i++) {
             ember = embers.get(i);
+            // 画每一张灰烬图
             g.drawImage(ember.getImage(),ember.getX(),ember.getY(),this);
         }
 

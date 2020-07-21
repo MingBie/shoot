@@ -4,6 +4,14 @@ import java.awt.image.BufferedImage;
 
 /**
  * 灰烬类
+ * 成员变量：
+ *        灰烬图组
+ *        每一张灰烬图
+ *        切换每一张图的频率
+ *        x，y坐标
+ *        灰烬图组下标
+ * 成员方法：
+ *        切换灰烬图片
  */
 public class Ember {
     private BufferedImage[] images; // 灰烬图组
@@ -20,13 +28,17 @@ public class Ember {
         this.i = 0;
         this.index = 0;
     }
-
+    // 切换灰烬图片
+    // 图片全部切换完时返回true
     public boolean burnDown() {
+        // 控制切换灰烬的频率
         i ++;
-        if (i % 10 == 0) {
+        if (i % interval == 0) {
+            // 判断灰烬图片是否全部切换完
             if (index == images.length) {
                 return true;
             }
+            // 获得每一张灰烬的图片
             image = images[index];
             index ++;
         }
