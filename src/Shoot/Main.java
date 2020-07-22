@@ -158,17 +158,19 @@ public class Main extends JPanel{
                     hero.setLife(3);
                     hero.setScore(0);
                     // 清空子弹列表
-                    Bullet bullet;
+                    bullets.clear();
+/*                    Bullet bullet;
                     for(int i = 0; i < bullets.size(); i++) {
                         bullet = bullets.get(i);
                         bullet = null;
-                    }
+                    }*/
                     // 清空飞行物列表
-                    Flyingobject fly;
+                    flys.clear();
+/*                    Flyingobject fly;
                     for(int i = 0; i < flys.size(); i++) {
                         fly = flys.get(i);
                         fly = null;
-                    }
+                    }*/
                 }
             }
             // 鼠标进入
@@ -403,18 +405,19 @@ public class Main extends JPanel{
         paintString(g);
         // 画开始图
         paintStart(g);
-        // 画暂停图
-        paintPause(g);
-        // 画游戏结束图
-        paintGameover(g);
         // 画英雄机
         paintHero(g);
+
         // 画飞行物（小敌机、大敌机、小蜜蜂）
         paintFlyingObject(g);
         // 画子弹
         paintBullet(g);
         // 画灰烬
         paintEmber(g);
+        // 画暂停图
+        paintPause(g);
+        // 画游戏结束图
+        paintGameover(g);
     }
     // 画背景图
     private void paintBackground(Graphics g) {
