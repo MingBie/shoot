@@ -15,6 +15,12 @@ public class Main extends JPanel{
     // 静态的成员变量可以在静态代码块中进行调用
     // public 可以使同包中的其他类调用静态成员变量
     // 不能定义局部变量，局部变量在方法结束时就消失了
+    //public static BufferedImage shoes;
+    public static BufferedImage shoe;
+    public static BufferedImage shoe_demo01;
+    public static BufferedImage shoe_demo02;
+    public static BufferedImage shoe_demo03;
+    public static BufferedImage background_demo01;
     public static BufferedImage airplane;
     public static BufferedImage airplane_ember0;
     public static BufferedImage airplane_ember1;
@@ -54,6 +60,11 @@ public class Main extends JPanel{
     // 类加载时进行加载，节省了内存的空间
     static {
         try {
+            shoe = ImageIO.read(Main.class.getResourceAsStream("pic/shoe.png"));
+            shoe_demo01 = ImageIO.read(Main.class.getResourceAsStream("pic/shoe_demo01.png"));
+            shoe_demo02 = ImageIO.read(Main.class.getResourceAsStream("pic/shoe_demo02.png"));
+            shoe_demo03 = ImageIO.read(Main.class.getResourceAsStream("pic/shoe_demo03.png"));
+            background_demo01 = ImageIO.read(Main.class.getResourceAsStream("pic/background_demo01.jpg"));
             airplane = ImageIO.read(Main.class.getResourceAsStream("pic/airplane.png"));
             airplane_ember0 = ImageIO.read(Main.class.getResourceAsStream("pic/airplane_ember0.png"));
             airplane_ember1 = ImageIO.read(Main.class.getResourceAsStream("pic/airplane_ember1.png"));
@@ -400,14 +411,13 @@ public class Main extends JPanel{
         // 清楚视图内容
         super.paint(g);
         // 画背景图（要放在最前面，因为要在最里层）
-        paintBackground(g);
+        //paintBackground(g);
         // 画生命值和分数
         paintString(g);
         // 画开始图
         paintStart(g);
         // 画英雄机
         paintHero(g);
-
         // 画飞行物（小敌机、大敌机、小蜜蜂）
         paintFlyingObject(g);
         // 画子弹
@@ -420,8 +430,11 @@ public class Main extends JPanel{
         paintGameover(g);
     }
     // 画背景图
-    private void paintBackground(Graphics g) {
+/*    private void paintBackground(Graphics g) {
         g.drawImage(background,0,0,this);
+    }*/
+    private void paintBackground(Graphics g) {
+        g.drawImage(background_demo01,0,0,this);
     }
     // 画英雄机
     private void paintHero(Graphics g) {
